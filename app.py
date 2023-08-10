@@ -11,7 +11,6 @@ processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
 
 index = faiss.IndexFlatL2(512)
 image_list = []
-
 core = Core()
 
 text_model = core.read_model('./ir/clip-vit-base-patch16_text.xml')
@@ -33,6 +32,7 @@ def zip_to_index(file_obj):
     global index
     global image_list
     image_list = []
+    index.reset()
     root = os.path.basename(file_obj.name).split('/')[-1].split('.')[0]
     zf = ZipFile(file_obj.name)
     zf.extractall('./')
@@ -54,7 +54,7 @@ searching = gr.Interface(fn=search,
                                                     height="auto"))
 demo = gr.TabbedInterface([embedding, searching], [
     "Step 1: Upload the images fold in .zip format", "Step 2: Search with text"
-], "Use text to search image")
+], "search images using text")
 
 if __name__ == "__main__":
     demo.launch()
