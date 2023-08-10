@@ -5,19 +5,19 @@ This sample is demonstrating how to use text to search an image.
 
 **1. Install the requirements**:
 
-    ```$python3 -m venv openvino_env```
+    $python3 -m venv openvino_env
 
-    ```$source openvino_env/bin/activate```
+    $source openvino_env/bin/activate
 
-    ```$pip install -r requirements.txt```
+    $pip install -r requirements.txt
 
 **2. Export the models**:
 
-    ```$python3 export.py```
+    $python3 export.py
 
 **3. Run application**:
 
-    ```$python3 app.py```
+    $python3 app.py
 
 **4. Upload a images fold in ```.zip``` format**:
 
