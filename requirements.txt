@@ -1,0 +1,11 @@
+numpy
+openvino-dev==2023.0.0
+git+https://github.com/huggingface/transformers.git
+gradio
+requests
+onnx>=1.11.0
+onnxruntime
+faiss-cpu
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.13.1; sys_platform == 'darwin'
+torch==1.13.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
