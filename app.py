@@ -32,6 +32,7 @@ def search(text, num_output):
 def zip_to_index(file_obj):
     global index
     global image_list
+    image_list = []
     root = os.path.basename(file_obj.name).split('/')[-1].split('.')[0]
     zf = ZipFile(file_obj.name)
     zf.extractall('./')
