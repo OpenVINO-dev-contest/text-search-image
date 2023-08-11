@@ -3,6 +3,7 @@ from transformers import CLIPProcessor
 import os
 import gradio as gr
 import numpy as np
+import cv2
 import faiss
 from PIL import Image
 from zipfile import ZipFile
@@ -39,6 +40,8 @@ def zip_to_index(file_obj):
     for item in os.listdir(root):
         image_file = os.path.join(root, item)
         image = np.array(Image.open(image_file))
+        if image.ndim == 2:
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         image_embed = dict(processor(images=[image], return_tensors="np"))
         image_embed_index = image_model(image_embed)[image_model.output()]
         index.add(image_embed_index)
@@ -57,4 +60,4 @@ demo = gr.TabbedInterface([embedding, searching], [
 ], "search images using text")
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(server_name='10.3.233.99')
